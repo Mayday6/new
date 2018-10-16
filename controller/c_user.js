@@ -9,7 +9,7 @@ const showSignin = (req,res) => {
 const handleSignin = (req, res) => {
     //获取表单数据
     const body = req.body
-    console.log(body)
+    // console.log(body)
     //第一个参数是获取到的页面上的email的值
     m_user.checkEmail(body.email, (err,data) => {
         if(err) {
