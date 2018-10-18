@@ -17,5 +17,10 @@
       router.get('/topic/create',c_topic.createTopic)
             //发布新话题文章列表页
       router.post('/createTopic',c_topic.handleCreateTopic)
+            //用户退出的请求
+      router.get('/signout',c_user.handleSignout)
+            //渲染用户列表的详情页
+            //:topicId自定义的动态添加的请求标识
+      router.get('/topic/:topicId',c_topic.showDetail)
     //4导出模块
     module.exports = router;

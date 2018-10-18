@@ -1,7 +1,7 @@
 //导入数据库
 const db = require('../tools/db_config')
 exports.findAllTopic = (callback) => {
-    const sqlstr = 'select * from `topics`oder by `createdAt` desc'
+    const sqlstr = 'select * from `topics` order by `createdAt` desc'
     db.query(sqlstr,(err,data) => {
         if(err) {
             return callback(err);
@@ -20,4 +20,14 @@ exports.addTopic = (body,callback) => {
         }
         callback(null,data);
     })
+}
+//根据条件查询数据库中的信息
+exports.findTopicId = (topicId,callback) => {
+ const sqlstr = 'select * from `topics` where id = ?'
+ db.query(sqlstr,topicId,(err,data) => {
+     if(err) {
+         return callback(err)
+     }
+     callback(null,data)
+ })
 }

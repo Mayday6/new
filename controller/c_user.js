@@ -33,10 +33,12 @@ const handleSignin = (req, res) => {
                         msg : '密码错误'
                     })
                 } 
-                console.log(data)
+                // console.log(data)
                 //把正确的用户信息保存起来 使用包 express-session 就可以使用req.session
                     //动态添加一条数据 保存session文件
                     req.session.user = data[0]
+                    //将信息持久化储存app.js中使用express-mysql-session
+
                 //如果账号和密码都正确重定向到指定页面
                 //后端将正确的数字传给前端后，前端放入页面执行跳转
                  res.send({
@@ -61,6 +63,15 @@ const handleSignin = (req, res) => {
     //      res.redirect('/')
     // })
 }
+//处理退出按钮
+const handleSignout = (req, res) => {
+    //清除session中的信息
+    delete req.session.user  //上面39行是保存的用户登录的信息
+    //重定向到登录页
+    res.redirect('/signin')
+}
 //导出
+
 exports.showSignin = showSignin;
 exports.handleSignin = handleSignin;
+exports.handleSignout = handleSignout;
