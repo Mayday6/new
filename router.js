@@ -13,5 +13,9 @@
       router.post('/signin',c_user.handleSignin)
             //渲染话题页
       router.get('/',c_topic.showTopic)
+            //发布新文章
+      router.get('/topic/create',c_topic.createTopic)
+            //发布新话题文章列表页
+      router.post('/createTopic',c_topic.handleCreateTopic)
     //4导出模块
     module.exports = router;

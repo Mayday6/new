@@ -3,6 +3,7 @@
     const express = require('express');
     const bodyParser = require('body-parser')
     const router = require('./router')
+    const session = require('express-session')
     //2.设置app对象
     const app = express();
         //配置模板的包 固定结构
@@ -11,6 +12,13 @@
         app.use('/public',express.static('./public'));
         app.use('/node_modules',express.static('./node_modules'))
         app.use(bodyParser.urlencoded({ extended: false }))
+        //配置express-session包 复制 github 
+        app.set('trust proxy', 1) // trust first proxy
+        app.use(session({
+        secret: 'keyboard cat',
+        resave: false,
+        saveUninitialized: true,
+        }))
     //监听端口
     app.use(router)
     app.listen(5000,()=>{
